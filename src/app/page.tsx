@@ -1,16 +1,28 @@
-import { Button, Flex } from "antd";
+// app/page.tsx
+import { UserButton } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs/server";
 
-export default function Home() {
+export default async function Home() {
+  const loggedInUser = await currentUser();
+
   return (
-    <>
-      <h1>Next Chat Socket</h1>
-      <Flex gap='small' wrap>
-        <Button type='primary'>Primary Button</Button>
-        <Button>Default Button</Button>
-        <Button type='dashed'>Dashed Button</Button>
-        <Button type='text'>Text Button</Button>
-        <Button type='link'>Link Button</Button>
-      </Flex>
-    </>
+    <div className='p-10'>
+      <div className='flex flex-col gap-1'>
+        <UserButton afterSignOutUrl='/sign-in' />
+        <div>
+          <h1 className='text-2xl font-bold'>Welcome to the Home Page</h1>
+          <p className='mt-2 text-gray-600'>
+            This is a simple example of a home page using Clerk for
+            authentication.
+          </p>
+          <div className='mt-2 p-4 bg-green-300 rounded-lg'>
+            <div>First Name: {loggedInUser?.firstName}</div>
+            <div>Last Name: {loggedInUser?.lastName}</div>
+            <div>User Name: {loggedInUser?.username}</div>
+            <div>Email: {loggedInUser?.emailAddresses[0]?.emailAddress}</div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }

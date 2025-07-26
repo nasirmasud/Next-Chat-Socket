@@ -10,6 +10,16 @@ function ThemeProvider({ children }: { children: React.ReactNode }) {
           borderRadius: 7,
           colorBgContainer: "#f0f0f0",
         },
+        components: {
+          Button: {
+            controlHeight: 35,
+            boxShadow: "none",
+            colorPrimaryBgHover: "#5c2d9b",
+            colorPrimaryHover: "#5c2d9b",
+            controlOutline: "none",
+            colorBorder: "#5c2d9b",
+          },
+        },
       }}
     >
       {children}
