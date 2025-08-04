@@ -1,7 +1,9 @@
 // app/page.tsx
+import { connectMongoDB } from "@/config/db-config";
 import { UserButton } from "@clerk/nextjs";
 import { currentUser } from "@clerk/nextjs/server";
 
+connectMongoDB();
 export default async function Home() {
   const loggedInUser = await currentUser();
 
